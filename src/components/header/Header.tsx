@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { RandomColor } from "../button";
+import { ColorPicker } from "../colorpicker";
 
 const SHeader = styled.header`
   display: flex;
@@ -13,6 +14,7 @@ const SHeader = styled.header`
 export const Header = () => {
   return (
     <SHeader>
+      <ColorPicker></ColorPicker>
       <RandomColor />
     </SHeader>
   );
