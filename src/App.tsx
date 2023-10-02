@@ -1,10 +1,11 @@
-import { Input } from "./components/input/Input";
+import {  ColorProvider } from "./context/ColorContext";
+import { Container } from "./components/container";
 
 function App() {
   return (
-    <div>
-      <Input />
-    </div>
+    <ColorProvider>
+      <Container>container</Container>
+    </ColorProvider>
   );
 }
 
