@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
+import { RandomColor } from "../button";
 
 const SHeader = styled.header`
   display: flex;
@@ -10,10 +10,10 @@ const SHeader = styled.header`
   background: #fff;
 `;
 
-type Props = {
-  children: ReactNode;
-};
-
-export const Header = ({ children }: Props) => {
-  return <SHeader>{children}</SHeader>;
+export const Header = () => {
+  return (
+    <SHeader>
+      <RandomColor />
+    </SHeader>
+  );
 };

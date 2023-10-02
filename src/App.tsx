@@ -1,10 +1,13 @@
 import {  ColorProvider } from "./context/ColorContext";
 import { Container } from "./components/container";
+import { Header } from "./components/header";
 
 function App() {
   return (
     <ColorProvider>
-      <Container>container</Container>
+      <Container>
+        <Header/>
+      </Container>
     </ColorProvider>
   );
 }
