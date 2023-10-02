@@ -1,5 +1,11 @@
+import { Input } from "./components/input/Input";
+
 function App() {
-  return <h1>Reset Styles</h1>;
+  return (
+    <div>
+      <Input />
+    </div>
+  );
 }
 
 export default App;
