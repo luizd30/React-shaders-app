@@ -8,6 +8,7 @@ type Props = {
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh
 `;
 
 export const Container = ({ children }: Props) => {
