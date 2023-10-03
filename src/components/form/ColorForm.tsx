@@ -6,6 +6,7 @@ import { ColorContext, ColorContextType } from "../../context/ColorContext";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { ErrorMessage } from "../messages";
 
 type ColorType = {
   color: string;
@@ -21,7 +22,7 @@ const Form = styled.form`
 const ColorSchema = z.string();
 
 export const ColorForm = () => {
-  const { color,setColor } = useContext(ColorContext) as ColorContextType;
+  const { color, setColor } = useContext(ColorContext) as ColorContextType;
   const {
     handleSubmit,
     register,
@@ -33,7 +34,10 @@ export const ColorForm = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <ColorPicker />
-      <Input register={register} name="color" required value={color}/>
+      <Input register={register} name="color" required value={color} />
+      {errors.color?.message ? (
+        <ErrorMessage>{errors.color?.message}</ErrorMessage>
+      ) : null}
     </Form>
   );
 };
