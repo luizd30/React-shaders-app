@@ -1,7 +1,8 @@
-import React from "react";
+import { useContext } from "react";
 import { ColorPicker } from "../colorpicker";
 import { Input } from "../input/Input";
 import styled from "styled-components";
+import { ColorContext, ColorContextType } from "../../context/ColorContext";
 
 const Form = styled.form`
   display: flex;
@@ -11,10 +12,11 @@ const Form = styled.form`
 `;
 
 export const ColorForm = () => {
+  const { color } = useContext(ColorContext) as ColorContextType;
   return (
     <Form>
       <ColorPicker />
-      <Input />
+      <Input value={color} />
     </Form>
   );
 };

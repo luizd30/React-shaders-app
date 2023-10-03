@@ -1,4 +1,7 @@
+import { InputHTMLAttributes } from "react";
 import styled from "styled-components";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 const SInput = styled.input`
   padding: 8px 16px;
@@ -7,6 +10,6 @@ const SInput = styled.input`
   outline: none;
 `;
 
-export const Input = () => {
-  return <SInput />;
+export const Input: React.FC<InputProps> = ({ ...InputProps }) => {
+  return <SInput {...InputProps} />;
 };
