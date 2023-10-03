@@ -36,7 +36,7 @@ export const Input: React.FC<InputProps> = ({
     <SInput
       {...register(name, {
         required,
-        onChange: (e) => setColor(e.target.value),
+        onChange: (e) => setColor(e.target.value.toUpperCase()),
       })}
       {...inputProps}
     />
