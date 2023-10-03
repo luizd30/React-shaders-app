@@ -13,7 +13,7 @@ export type ColorContextType = {
 export const ColorContext = createContext<ColorContextType | null>(null);
 
 export const ColorProvider = ({ children }: Props) => {
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>("#ffffff");
 
   const newColor = () => {
     const color = Math.floor(Math.random() * 16777215)
