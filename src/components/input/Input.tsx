@@ -17,6 +17,7 @@ type Props = {
 type InputProps = InputHTMLAttributes<HTMLInputElement> & Props;
 
 const SInput = styled.input`
+  width: 100px;
   padding: 8px 16px;
   border: none;
   border-bottom: 1px solid #d4d4d8;
