@@ -45,7 +45,7 @@ export const ColorPicker = () => {
 
       {isShow ? (
         <ColorPickerBox>
-          <HexColorPicker color={color} onChange={setColor} />
+          <HexColorPicker color={color} onChange={(e) => setColor(e.toUpperCase())} />
         </ColorPickerBox>
       ) : null}
     </Container>
