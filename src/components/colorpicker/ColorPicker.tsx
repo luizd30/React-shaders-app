@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { HexColorPicker } from "react-colorful";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
-const Box = styled.div`
+const ColorPickerBox = styled.div`
   position: absolute;
   margin-top: 10px;
 `;
@@ -26,22 +27,20 @@ const Container = styled.div`
 `;
 
 export const ColorPicker = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isShow, setIsShow] = useState(false);
+  const ref = useRef();
 
-  const showColorPicker = () => {
-    setIsVisible((state) => !state);
-  };
-
+  useOutsideClick(ref, () => setIsShow(false));
   return (
-    <Container>
-      <Wrapper onClick={showColorPicker}>
-        <Color></Color>
+    <Container ref={ref}>
+      <Wrapper onClick={() => setIsShow(!isShow)}>
+        <Color />
       </Wrapper>
 
-      {isVisible ? (
-        <Box>
+      {isShow ? (
+        <ColorPickerBox>
           <HexColorPicker />
-        </Box>
+        </ColorPickerBox>
       ) : null}
     </Container>
   );
