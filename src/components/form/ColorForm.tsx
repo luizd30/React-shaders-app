@@ -19,7 +19,11 @@ const Form = styled.form`
   gap: 16px;
 `;
 
-const ColorSchema = z.string();
+const ColorSchema = z.object({
+  color: z
+    .string()
+    .regex(/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/, { message: "Invalid format" }),
+});
 
 export const ColorForm = () => {
   const { color, setColor } = useContext(ColorContext) as ColorContextType;
@@ -28,6 +32,8 @@ export const ColorForm = () => {
     register,
     formState: { errors },
   } = useForm<ColorType>({ resolver: zodResolver(ColorSchema) });
+
+  console.log(errors);
 
   const onSubmit: SubmitHandler<ColorType> = (data) => console.log(data);
 
