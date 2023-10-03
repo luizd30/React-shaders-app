@@ -32,9 +32,7 @@ export const ColorPicker = () => {
   const { color, setColor } = useContext(ColorContext) as ColorContextType;
 
   const [isShow, setIsShow] = useState(false);
-  const ref = useRef();
-
-  console.log(color);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useOutsideClick(ref, () => setIsShow(false));
   return (
@@ -45,7 +43,10 @@ export const ColorPicker = () => {
 
       {isShow ? (
         <ColorPickerBox>
-          <HexColorPicker color={color} onChange={(e) => setColor(e.toUpperCase())} />
+          <HexColorPicker
+            color={color}
+            onChange={(e) => setColor(e.toUpperCase())}
+          />
         </ColorPickerBox>
       ) : null}
     </Container>
