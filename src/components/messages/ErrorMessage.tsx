@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 type Props = {
-  message: string;
+  children: ReactNode;
 };
 
 const Message = styled.p`
@@ -10,6 +11,6 @@ const Message = styled.p`
   font-weight: 500;
 `;
 
-export const ErrorMessage = ({ message }: Props) => {
-  return <Message>{message}</Message>;
+export const ErrorMessage = ({ children }: Props) => {
+  return <Message>{children}</Message>;
 };
