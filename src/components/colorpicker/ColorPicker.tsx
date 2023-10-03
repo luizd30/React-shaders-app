@@ -17,13 +17,6 @@ const Wrapper = styled.div`
   cursor: pointer;
 `;
 
-/* const Color = styled.div`
-  background: #a855f7;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  height: 100%;
-`; */
-
 const Color = styled.div<{ $bg: string }>`
   background: ${(props) => props.$bg};
   border-radius: 50%;
@@ -41,7 +34,7 @@ export const ColorPicker = () => {
   const [isShow, setIsShow] = useState(false);
   const ref = useRef();
 
-  console.log(color)
+  console.log(color);
 
   useOutsideClick(ref, () => setIsShow(false));
   return (

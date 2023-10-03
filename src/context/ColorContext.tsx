@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 type Props = {
   children: ReactNode;
@@ -22,6 +22,10 @@ export const ColorProvider = ({ children }: Props) => {
       .toUpperCase();
     setColor(`#${color}`);
   };
+
+  useEffect(() => {
+    newColor();
+  }, []);
 
   return (
     <ColorContext.Provider value={{ color, setColor, newColor }}>
