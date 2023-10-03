@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import styled from "styled-components";
 import { HexColorPicker } from "react-colorful";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { ColorContext, ColorContextType } from "../../context/ColorContext";
 
 const ColorPickerBox = styled.div`
   position: absolute;
@@ -15,9 +16,17 @@ const Wrapper = styled.div`
   border: 2px solid #18181b;
   cursor: pointer;
 `;
-const Color = styled.div`
+
+/* const Color = styled.div`
   background: #a855f7;
-  border-radius: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  height: 100%;
+`; */
+
+const Color = styled.div<{ $bg: string }>`
+  background: ${(props) => props.$bg};
+  border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.6);
   height: 100%;
 `;
@@ -27,6 +36,8 @@ const Container = styled.div`
 `;
 
 export const ColorPicker = () => {
+  const { color } = useContext(ColorContext) as ColorContextType;
+
   const [isShow, setIsShow] = useState(false);
   const ref = useRef();
 
@@ -34,12 +45,12 @@ export const ColorPicker = () => {
   return (
     <Container ref={ref}>
       <Wrapper onClick={() => setIsShow(!isShow)}>
-        <Color />
+        <Color $bg={'#'+ color}/>
       </Wrapper>
 
       {isShow ? (
         <ColorPickerBox>
-          <HexColorPicker />
+          <HexColorPicker color={color} />
         </ColorPickerBox>
       ) : null}
     </Container>

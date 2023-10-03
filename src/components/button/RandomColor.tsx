@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
+import { useContext } from "react";
+import { ColorContext, ColorContextType } from "../../context/ColorContext";
 
 const Button = styled.button`
   width: 40px;
@@ -15,8 +17,9 @@ const Button = styled.button`
 `;
 
 export const RandomColor = () => {
+  const { newColor } = useContext(ColorContext) as ColorContextType;
   return (
-    <Button>
+    <Button onClick={() => newColor()}>
       <Icon icon="mi:switch" color="#09090b" width="16" height="16" />
     </Button>
   );
