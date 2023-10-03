@@ -36,21 +36,23 @@ const Container = styled.div`
 `;
 
 export const ColorPicker = () => {
-  const { color } = useContext(ColorContext) as ColorContextType;
+  const { color, setColor } = useContext(ColorContext) as ColorContextType;
 
   const [isShow, setIsShow] = useState(false);
   const ref = useRef();
+
+  console.log(color)
 
   useOutsideClick(ref, () => setIsShow(false));
   return (
     <Container ref={ref}>
       <Wrapper onClick={() => setIsShow(!isShow)}>
-        <Color $bg={'#'+ color}/>
+        <Color $bg={color} />
       </Wrapper>
 
       {isShow ? (
         <ColorPickerBox>
-          <HexColorPicker color={color} />
+          <HexColorPicker color={color} onChange={setColor} />
         </ColorPickerBox>
       ) : null}
     </Container>

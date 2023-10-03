@@ -7,6 +7,7 @@ type Props = {
 export type ColorContextType = {
   color: string;
   newColor: () => void;
+  setColor: (color: string) => void;
 };
 
 export const ColorContext = createContext<ColorContextType | null>(null);
@@ -19,11 +20,11 @@ export const ColorProvider = ({ children }: Props) => {
       .toString(16)
       .padStart(6, "0")
       .toUpperCase();
-    setColor(color);
+    setColor(`#${color}`);
   };
 
   return (
-    <ColorContext.Provider value={{ color, newColor }}>
+    <ColorContext.Provider value={{ color, setColor, newColor }}>
       {children}
     </ColorContext.Provider>
   );
