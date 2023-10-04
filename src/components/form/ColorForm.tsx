@@ -33,14 +33,17 @@ export const ColorForm = () => {
     formState: { errors },
   } = useForm<ColorType>({ resolver: zodResolver(ColorSchema) });
 
-  console.log(errors);
-
-  const onSubmit: SubmitHandler<ColorType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<ColorType> = (data) => setColor(data.color);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <ColorPicker />
-      <Input register={register} name="color" required value={color} />
+      <Input
+        register={register}
+        name="color"
+        placeholder="#FFFFFF"
+        required
+        color={color}      />
       {errors.color?.message ? (
         <ErrorMessage>{errors.color?.message}</ErrorMessage>
       ) : null}

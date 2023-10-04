@@ -1,7 +1,6 @@
-import { InputHTMLAttributes, useContext } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import { UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
-import { ColorContext, ColorContextType } from "../../context/ColorContext";
 
 type ColorProp = {
   color: string;
@@ -11,7 +10,7 @@ type Props = {
   name: keyof ColorProp;
   required?: boolean;
   register: UseFormRegister<ColorProp>;
-  onChange?: () => void;
+  color: string;
 };
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & Props;
@@ -28,15 +27,21 @@ export const Input: React.FC<InputProps> = ({
   name,
   required,
   register,
-  onChange,
+  color,
   ...inputProps
 }) => {
-  const { setColor } = useContext(ColorContext) as ColorContextType;
+  const [input, setInput] = useState(color);
+
+  useEffect(() => {
+    setInput(color);
+  }, [color]);
+
   return (
     <SInput
+      value={input.toUpperCase()}
       {...register(name, {
         required,
-        onChange: (e) => setColor(e.target.value.toUpperCase()),
+        onChange: (e) => setInput(e.target.value),
       })}
       {...inputProps}
     />
